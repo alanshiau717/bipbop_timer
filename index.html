@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Bip Bop Kip Tim</title>
+  </head>
+
+
+  <body>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="./js/timer.js"></script>
+    <script>
+      // function used to change the width of the object using a float number
+
+    </script>
+    <script>
+
+
+    </script>
+    <h1 class="text-center">Bip Bop Clock</h1>
+    <div class="text-center">Made by Bip Bops, for Bip Bops</div>
+    <div class = "container-fluid" style = "margin-top: 10vh">
+      <div class = "row">
+        <div class = "col"></div>
+        <div class = "col-6" id = "stopwatch_container">
+          <h1 class = "text-center" id="bar_title">Test</h1>
+          <h2 id="time_text" class = "text-center">00:00</h2>
+          <div class="progress">
+            <div class="progress-bar" id="time_bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class = "container-fluid" style = "margin-top:5vh">
+            <div class = "row">
+            <div class = "col">
+            <button id = "play_pause_button" onclick = "toggle_start_stop()">Pause</button>
+          </div>
+            <div class = "col">
+            <button onclick = "stopwatch.stop()">Stop</button>
+          </div>
+            <div class = "col">
+            <button onclick = "next()">Skip</button>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div class = "col"></div>
+      </div>
+      <div class = "row">
+        <div class = "col" id = "trash"></div>
+        <div class = "col-6">
+        <ul id="sortable" class = "list-group connectedSortable ui-helper-reset">
+          <li class="ui-state-default list-group-item"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 1</div> <div class = "time" time-editable>1:00</div></li>
+          <li class="ui-state-default list-group-item"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 2</div> <div class = "time" time-editable>1:00</div></li>
+          <li class="ui-state-default list-group-item"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 3</div> <div class = "time" time-editable>1:00</div></li>
+          <li class="ui-state-default list-group-item"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 4</div> <div class = "time" time-editable> 1:00</div></li>
+          <li class="ui-state-default list-group-item"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 5</div> <div class = "time" time-editable>1:00</div></li>
+          <li class="ui-state-default list-group-item"><span class="ui-ic on ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 6</div> <div class = "time" time-editable>1:00</div></li>
+          <li class="ui-state-default list-group-item"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><div class="item" data-editable>Item 7</div> <div class = "time" time-editable>1:00</div></li>
+          <li class="ui-state-default list-group-item" style = "display:none" id ="input_row"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+            <form id="new_entry" class = "item">
+          <div class = "form-group">
+            <label for="item_input" >Item</label>
+            <input class="form-control" id = "item_input" type = "text" placeholder = "Item Title"></input> 
+            <div class = "invalid-feedback">
+            Please provide name
+            </div>
+          </div>
+          <div class = "form-group" style="display:inline-block;">
+            <label for="time_hour_input" >Hour</label>
+            <input class = "form-control time_input" id = "time_hour_input" type="text" maxlength="2"></input>
+            <div class = "invalid-feedback">
+              Not a valid number
+              </div>
+              <div class = "valid-feedback">
+                Looks Good!
+                </div>
+          </div>
+          <div class = "form-group" style="display:inline-block;">
+            <label for="time_min_input" >Minute</label>
+            <input class = "form-control time_input" id = "time_min_input" type="text" maxlength="4"></input>
+            <div class = "invalid-feedback">
+              Not a valid number
+              </div>
+              <div class = "valid-feedback">
+                Looks Good!
+                </div>
+          </div>
+          <button  style="display:block;" class="btn btn-primary" type = "submit">Submit form</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+        <div class = "col" id = "drop_bottom"></div>
+      </div>
+      <div class = "row">
+        <button onclick = "toggle_input()">+</button>
+      </div>
+    </div>
+</body>
+</html>
+
+<script src="./js/form.js"></script>
+<script>
+  function toggle_start_stop(){
+    if ($("#play_pause_button").text() == "Play"){
+      stopwatch.play()
+      $("#play_pause_button").text("Pause")
+    }
+    else{
+      stopwatch.pause()
+      $("#play_pause_button").text("Play")
+    }
+
+  }
+  function change_width(fl, time_bar_id){
+        percent = (fl*100).toString()+"%"
+        $("#"+time_bar_id).css("width",percent)
+      }
+  //responsible for updating stopwatch time
+  function stopwatch_update(curr_remaining, prev_remaining, text_id){
+    curr_remaining = Math.floor(curr_remaining)
+    mins = Math.floor(curr_remaining/60).toString()
+    secs = (curr_remaining%60).toString()
+    time_str = ((mins.length==2)? mins: "0"+mins) + ":" + ((secs.length==2)? secs: "0"+secs)
+
+    if ((time_str != prev_remaining)){
+      $("#"+text_id).text(time_str)
+    }
+  }
+  //responsible for updating the progress bar
+  function bar_update(curr_remaining,total_time,time_bar_id){
+    proportion = curr_remaining/Math.floor(total_time/1000)
+    change_width(proportion, time_bar_id)
+  }
+  //converts at 1:30 type time into minutes
+  function time_to_minutes(time){
+    var time = time.split(":")
+    return  parseInt(time[0])*60 +  parseInt(time[1])
+  }
+  //responsible for retrieving data and calling other functions for updates
+  function update_handler(stopwatch, text_id, time_bar_id){
+    prev_remaining = $("#time_text").text()
+    curr_remaining = stopwatch.getRemaining()
+    total_time = stopwatch.getTotal()  
+    if (stopwatch.next!=true){
+    stopwatch_update(curr_remaining, prev_remaining, text_id)
+    bar_update(curr_remaining, total_time, time_bar_id)
+    }
+    else{
+      next()
+    }
+    if (stopwatch.stopped){
+      $("#play_pause_button").text("Play")
+    }
+    else{
+      $("#play_pause_button").text("Pause")
+    }
+  }
+
+  function toggle_input(){
+    if($("#input_row").css("display")=="none"){
+      $("#input_row").css("display","inline")
+      $('#item_input').focus()
+      return
+    }
+    $("#input_row").css("display","inline")
+    return
+  }
+  //returns Timer object
+  function next(){
+      curr_item = $("#"+sortable_id+">li:first-child")
+        $("#"+sortable_id+">li:first").remove().insertAfter($("#"+sortable_id+">li:nth-last-child(2)"))
+        curr_item = $("#"+sortable_id+">li:first-child")
+        // curr_item.css("display","none")
+        $("#"+sortable_id+">li:nth-last-child(2)").css("display", "inline")
+      // }
+      time = curr_item.children(".time").text()
+      time = time_to_minutes(time)
+      item = curr_item.children(".item").text()
+      stopwatch = new Timer(time*60*1000)
+      $("#bar_title").text(item)
+      stopwatch_update(stopwatch.getRemaining(), -1, stopwatch_text_id)
+      return stopwatch
+  }
+  $( function() {
+    $( "#sortable" ).sortable(
+      {
+      items: "li:not(:first)"
+    }
+    ).disableSelection()
+    $("#trash").droppable({
+      tolerance: "touch",
+    accept: ".connectedSortable li",
+    hoverClass: "ui-state-hover",
+    drop: function(ev, ui) {
+        ui.draggable.remove();
+    } })
+    $("#drop_bottom").droppable({
+      tolerance: "touch",
+        accept: ".connectedSortable li",
+        hoverClass: "ui-state-hover",
+        helper: "clone",
+        drop: function(ev, ui) {
+            var index = (ui.draggable.index()+1).toString()
+            html = $(`#sortable >li:nth-child(${index})`).html()
+            html = '<li class="ui-state-default list-group-item">' + html + '</li>'
+            $(html).insertAfter($("#"+sortable_id+">li:nth-last-child(2)"))
+            ui.draggable.remove()
+        }
+    })
+} );
+
+  //Variables declaration
+  time_bar_id = "time_bar"
+  stopwatch_text_id = "time_text"
+  sortable_id = "sortable"
+  stopwatch = next()
+  change_width(1, time_bar_id)
+  setInterval("update_handler(stopwatch, stopwatch_text_id, time_bar_id)", 100);
+
+;
+
+
+$(document).keypress(function(e) {
+  var tag = e.target.tagName.toLowerCase();
+  if(e.which == 32 && tag != 'input' && tag != 'textarea') {
+    toggle_start_stop()
+  }
+});
+
+$( "#stopwatch_container" ).dblclick(function() {
+  stopwatch.stop()
+});
+
+$( "#stopwatch_container" ).click(function() {
+  toggle_start_stop()
+});
+</script>
+<script src="./js/task_edit.js"></script>
+<style>
+  .container{
+    width: 1vw;
+    background-color: aqua;
+  }
+  #trash.ui-state-hover{
+    background: red;
+}
+  #drop_bottom.ui-state-hover{
+    background: green
+  }
+</style>
